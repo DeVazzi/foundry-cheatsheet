@@ -88,6 +88,12 @@ viewing storage slots
 forge inspect <path>:<contractName> storage
 ```
 
+Viewing storage slots of a contract code
+
+```sh
+forge inspect ./src/MyContract.sol storage --pretty
+```
+
 Get contract sizes for the enitre project
 
 ```
@@ -106,4 +112,43 @@ Fork at a certain block
 
 ```
 anvil fork --rpc-url $GOERLI_RPC_URL --fork-block-number 123456
+```
+
+## Cheat Codes
+
+while testsing we can use cheatcodes in order to test against various cases
+
+### fuzzing
+
+we can simple fuzz tests by inputing parameters to our test functions for example:
+
+```solidity
+function testFunc(uint256 _x) public {
+    counter.setNumber(x)
+}
+```
+
+- that way the fuzzer will run the test using values in the range of uint256
+- in order to reject some values we can use: `vm.assumes` i.e:
+
+```solidity
+vm.assume (x > 100)
+```
+
+that way any value above 100 will be rejected
+
+another way which is smarter is by using the bound cheatcode:
+
+```solidity
+bound(x, 100, 200)
+```
+
+that way we enforcing x to be between 100 and 200 without rejecting any values
+
+## invaraint tests
+
+### write to file
+
+```solidity
+vm.writeLine("x.txt", x)
 ```
