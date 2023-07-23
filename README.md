@@ -1,6 +1,6 @@
 # Foundry Cheatsheet
 
-Alpha to the people
+Some spice for the people
 
 ![Foundry Cheatsheet](foundry.png)
 
@@ -20,6 +20,12 @@ sending tx
 
 ```sh
 cast send 0x08646dd622e2e2f668d6964aa9e6d05b7561c4ac "prankTransferFrom()" --rpc-url http://127.0.0.1:8545 --private-key $PRIVATE_KEY
+```
+
+
+simulate a tx from another impersonated address
+```
+cast send $CONTRACT_ADDRESS 0x00 --from $IMPERSONATED_ADDRESS --unlocked --gas-limit 300000
 ```
 
 Resimulate a boradcasted tranasction
@@ -68,6 +74,11 @@ cast storage 0x7ceb23fd6bc0add59e62ac25578270cff1b9f619 0
 
 Output: `0x0000000000000000000000000000000000000000000000000000000000000000`
 
+
+enabling verbose logging of foundry tools:
+
+```export RUST_LOG=ethers=trace```
+
 ## forge
 
 Creating a contract
@@ -108,11 +119,12 @@ Forking a live network
 anvil fork --rpc-url $GOERLI_RPC_URL
 ```
 
-Fork at a certain block
+Fork at a certain block and allows auto impersonation of any address 
 
 ```
-anvil fork --rpc-url $GOERLI_RPC_URL --fork-block-number 123456
+anvil fork --rpc-url $GOERLI_RPC_URL --fork-block-number 123456 --auto-impersonate
 ```
+
 
 ## Cheat Codes
 
