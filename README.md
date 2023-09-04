@@ -22,6 +22,10 @@ sending tx
 cast send 0x08646dd622e2e2f668d6964aa9e6d05b7561c4ac "prankTransferFrom()" --rpc-url http://127.0.0.1:8545 --private-key $PRIVATE_KEY
 ```
 
+set balance of an account on a local anvil fork
+```
+cast rpc anvil_setBalance 0x21a3eBD6cda799D82646Fe5660CE80b0B0d9A563 10000000000000000000000000
+```
 
 simulate a tx from another impersonated address
 ```
